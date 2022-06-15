@@ -3,6 +3,7 @@ import { ADD_ITEMS, DEL_ITEMS, INC_ITEMS, REM_ITEMS } from "./ActionTypes";
 const initialState = {
   allProducts: [],
   cart: 0,
+  totalAmount: 0,
 };
 
 export const cartReducer = (state = initialState, action) => {
@@ -21,9 +22,16 @@ export const cartReducer = (state = initialState, action) => {
         if (index !== -1) {
           state.allProducts[index].prodquant += 1;
         }
+        let amt = 0;
+        let tot = state.allProducts.reduce(
+          (prev, cur) => prev + cur.prodPrice * cur.prodquant,
+          amt
+        );
+
         return {
           allProducts: [...state.allProducts],
           cart: state.cart + 1,
+          totalAmount: tot,
         };
       } else {
         const index = state.allProducts.findIndex(
@@ -32,9 +40,15 @@ export const cartReducer = (state = initialState, action) => {
         if (index !== -1) {
           state.allProducts[index].prodquant += 1;
         }
+        let amt = 0;
+        let tot = state.allProducts.reduce(
+          (prev, cur) => prev + cur.prodPrice * cur.prodquant,
+          amt
+        );
         return {
           allProducts: [...state.allProducts],
           cart: state.cart,
+          totalAmount: tot,
         };
       }
 
@@ -47,27 +61,46 @@ export const cartReducer = (state = initialState, action) => {
       };
 
     case INC_ITEMS:
+      if (state.allProducts.length === 0) {
+        state.allProducts = [...state.allProducts, action.payload.data];
+      }
+
       const index = state.allProducts.findIndex(
         (ele) => ele.id === action.payload.id
       );
       if (index !== -1) {
         state.allProducts[index].prodquant += 1;
       }
+      let amts = 0;
+      let tots = state.allProducts.reduce(
+        (prev, cur) => prev + cur.prodPrice * cur.prodquant,
+        amts
+      );
       return {
         allProducts: [...state.allProducts],
         cart: state.cart,
+        totalAmount: tots,
       };
 
     case REM_ITEMS:
+      if (state.allProducts.length === 0) {
+        state.allProducts = [...state.allProducts, action.payload.data];
+      }
       const index_2 = state.allProducts.findIndex(
         (ele) => ele.id === action.payload.id
       );
       if (index_2 !== -1) {
         state.allProducts[index_2].prodquant -= 1;
       }
+      let amt = 0;
+      let tot = state.allProducts.reduce(
+        (prev, cur) => prev + cur.prodPrice * cur.prodquant,
+        amt
+      );
       return {
         allProducts: [...state.allProducts],
         cart: state.cart,
+        totalAmount: tot,
       };
     default:
       return state;

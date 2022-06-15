@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { Component } from "react";
 class App extends Component {
   render() {
-    console.log(this.props.allProducts);
     return (
       <div className="App">
         <BrowserRouter>
@@ -19,7 +18,15 @@ class App extends Component {
             <Route path="/product" element={<SingleProduct />}>
               <Route path=":id" element={<SingleProduct />}></Route>
             </Route>
-            <Route path="checkout" element={<Checkout />}></Route>
+            <Route
+              path="checkout"
+              element={
+                <Checkout
+                  products={this.props.allProducts}
+                  totalAmount={this.props.totalAmount}
+                />
+              }
+            ></Route>
           </Routes>
         </BrowserRouter>
       </div>
@@ -31,6 +38,7 @@ const mapStateToProps = (state) => {
   return {
     allProducts: state.items.allProducts,
     cart: state.items.cart,
+    totalAmount: state.items.totalAmount,
   };
 };
 
