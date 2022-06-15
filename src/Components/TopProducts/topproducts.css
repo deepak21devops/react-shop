@@ -1,0 +1,25 @@
+.prodImg {
+  width: 120px;
+  height: 150px;
+}
+
+.price {
+  width: 50px;
+  height: 30px;
+
+  color: red;
+  padding: 2px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cartbtn {
+  border: none;
+  background-color: blue;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}

@@ -1,0 +1,37 @@
+.cart,
+.checkoutbtn {
+  border: none;
+  margin-right: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.cart {
+  background-color: crimson;
+
+  border-radius: 10px;
+}
+
+.checkoutbtn {
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.left {
+  margin-right: 10px;
+  border: 1px solid black;
+  font-size: 25px;
+  padding: 0 5px;
+
+  cursor: pointer;
+}
+
+.right {
+  margin-left: 10px;
+  border: 1px solid black;
+  font-size: 25px;
+  padding: 0 3px;
+
+  cursor: pointer;
+}
